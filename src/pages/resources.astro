@@ -1,0 +1,113 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <BaseHead
+      title={`Материалы — ${SITE_TITLE}`}
+      description="Учебные материалы, книги и ресурсы миссии Shekinah & School of Christ Kazakhstan"
+    />
+  </head>
+  <body class="bg-gray-50 text-gray-900 font-sans">
+    <Header />
+
+    <main class="max-w-5xl mx-auto px-4 py-12">
+      <!-- 📘 Заголовок -->
+      <section class="text-center mb-12">
+        <h1 class="text-3xl font-bold mb-4">Материалы для изучения</h1>
+        <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+          Здесь собраны книги, PDF-конспекты, аудио и видео-ресурсы, которые помогут
+          вам глубже понять путь Христов и истину учения «Школы Христа».
+        </p>
+      </section>
+
+      <!-- 📖 Раздел 1: Учебные материалы -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold mb-4">Учебные материалы</h2>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <a
+            href="/downloads/SchoolOfChrist_Lessons.pdf"
+            class="block bg-white p-6 rounded-xl shadow hover:shadow-md transition"
+          >
+            <h3 class="text-xl font-semibold mb-2">Уроки Школы Христа (PDF)</h3>
+            <p>Основные конспекты Берта Кленденнена — 138 уроков, структурированные по темам.</p>
+          </a>
+
+          <a
+            href="/downloads/Prayer_and_Cross.pdf"
+            class="block bg-white p-6 rounded-xl shadow hover:shadow-md transition"
+          >
+            <h3 class="text-xl font-semibold mb-2">Молитва и Крест</h3>
+            <p>Духовное учение о внутреннем распятии и жизни во Христе.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- 🎧 Раздел 2: Аудио и видео -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold mb-4">Аудио и видео</h2>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <a
+            href="https://www.youtube.com/watch?v=CqXtkPPj__s&list=PLkBM5Bc0xJbnkwX6WCPrwXBpxJb7kd6s9"
+            target="_blank"
+            class="block bg-white p-6 rounded-xl shadow hover:shadow-md transition"
+          >
+            <h3 class="text-xl font-semibold mb-2">Плейлист: Уроки Школы Христа</h3>
+            <p>Полный цикл видеоуроков с переводом на русский язык.</p>
+          </a>
+
+          <a
+            href="https://t.me/mission_shekinah"
+            target="_blank"
+            class="block bg-white p-6 rounded-xl shadow hover:shadow-md transition"
+          >
+            <h3 class="text-xl font-semibold mb-2">Telegram-канал</h3>
+            <p>Аудиоуроки, свидетельства и вдохновляющие послания.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- 📚 Раздел 3: Книги -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold mb-4">Книги</h2>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <a
+            href="/downloads/Bert_Clendennen_The_School_of_Christ.pdf"
+            class="block bg-white p-6 rounded-xl shadow hover:shadow-md transition"
+          >
+            <h3 class="text-xl font-semibold mb-2">Берт Кленденнен — Школа Христа</h3>
+            <p>Классическая книга, ставшая основанием служения по всему миру.</p>
+          </a>
+
+          <a
+            href="/downloads/T_Austin_Sparks_Christ_in_You.pdf"
+            class="block bg-white p-6 rounded-xl shadow hover:shadow-md transition"
+          >
+            <h3 class="text-xl font-semibold mb-2">Т. Остин-Спаркс — Христос в вас</h3>
+            <p>Учение о внутренней жизни Христа в верующем, источник духовного обновления.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- 🕊️ Призыв -->
+      <section class="text-center mt-12">
+        <p class="text-lg text-gray-800 mb-6">
+          Все материалы предоставлены для духовного роста, обучения и распространения истины Евангелия.
+        </p>
+        <a
+          href="/contact"
+          class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-700 transition"
+        >
+          Связаться с миссией
+        </a>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>
