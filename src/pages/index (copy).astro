@@ -3,9 +3,6 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import { Image } from 'astro:assets';
-import missionShekinah from '../assets/MissionShekinah.jpg';
-import ImageBlock from '../components/ImageBlock.astro';
 ---
 
 <!doctype html>
@@ -24,8 +21,14 @@ import ImageBlock from '../components/ImageBlock.astro';
       </button>
     </div>
 
-<ImageBlock src="/images/MissionShekinah.jpg" alt="Mission Shekinah — Школа Христа в Казахстане" />
-
+      <main style="max-width: 800px; margin: auto; padding: 1rem;">
+      <section style="text-align: center; margin-bottom: 2rem;">
+        <img
+         src="/images/MissionShekinah.jpg"
+          alt="Mission Shekinah — Школа Христа в Казахстане"
+          style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"
+        />
+      </section>
       <h4>🧑‍🚀 Mission Shekinah & Lev Dessyatykh!</h4>
       <p>Sep 12, 2025</p>
       <p>
@@ -43,7 +46,16 @@ import ImageBlock from '../components/ImageBlock.astro';
         📖 <b>История:</b> В 2002 году я прошёл обучение в Международной Школе Христа в Киргизии. С тех пор — более 20 лет служения.
       </p>
 
-<ImageBlock src="/images/ShekinahMission.jpg" alt="Mission Shekinah — Школа Христа в Казахстане" />
+
+    <main style="max-width: 800px; margin: auto; padding: 1rem;">
+      <section style="text-align: center; margin-bottom: 2rem;">
+        <img
+         src="/images/ShekinahMission.jpg"
+          alt="Mission Shekinah — Школа Христа в Казахстане"
+          style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"
+        />
+      </section>
+
 
       <p>
         🔥 Пусть Казахстан станет пламенем пробуждения. Аминь.

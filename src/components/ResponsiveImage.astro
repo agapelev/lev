@@ -1,0 +1,14 @@
+---
+const { src, alt } = Astro.props;
+---
+
+<section class="text-center mb-8 px-4">
+  <img
+    src={src}
+    alt={alt}
+    class="w-full max-w-xl mx-auto rounded-xl shadow-md"
+    loading="lazy"
+    decoding="async"
+  />
+</section>
+
