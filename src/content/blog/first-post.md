@@ -13,7 +13,7 @@ heroImage: "/public/images/mission-shekinah.jpg"
 Вот несколько идей, как начать работу с шаблоном:
 
 Редактировать эту страницу в src/pages/index.astro
-Редактировать элементы заголовка сайта в src/components/Header.astro
+Редактировать элементы заголовка сайpта в src/components/Header.astro
 Добавьте свое имя в нижний колонтитул src/components/Footer.astro
 Ознакомьтесь с включенными записями в блоге src/content/blog/
 Настройте макет страницы записи блога в src/layouts/BlogPost.astro
