@@ -1,0 +1,118 @@
+---
+title: Индексация контента в Algolia
+description: Как загрузить Markdown-страницы в Algolia для поиска
+tags: [algolia, поиск, индексация, markdown, nextjs]
+---
+
+## 🔧 Цель
+
+Подключить Algolia к миссионерской платформе и загрузить все `.md`-страницы из `content/pages` и `content/pages/blog` в индекс `dev_MISSION`.
+
+---
+
+## 📁 Структура контента
+
+Исходные файлы лежат в:
+
+- `content/pages/*.md`
+- `content/pages/blog/*.md`
+
+Каждый файл содержит `title`, `slug`, `body` в формате frontmatter + markdown.
+
+---
+
+## 📦 Установка зависимостей
+
+```bash
+npm install algoliasearch gray-matter dotenv
+
+📄 .env.local
+Создайте файл .env.local в корне проекта:
+
+NEXT_PUBLIC_ALGOLIA_APP_ID=05T6TELL9R
+NEXT_PUBLIC_ALGOLIA_INDEX_NAME=dev_MISSION
+NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY=6f70ce3406e8f713c6e51fe2ad5e988a
+ALGOLIA_ADMIN_KEY=052d30a03559db6b41f1241999d140cc
+
+📜 Скрипт scripts/index-to-algolia.js
+
+import dotenv from 'dotenv';
+dotenv.config({ path: '.env.local' });
+
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import algoliasearch from 'algoliasearch';
+
+const client = algoliasearch(
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
+  process.env.ALGOLIA_ADMIN_KEY
+);
+
+const index = client.initIndex(process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME);
+
+const contentDirs = [
+  path.join(process.cwd(), 'content/pages'),
+  path.join(process.cwd(), 'content/pages/blog'),
+  path.join(process.cwd(), 'content/pages/guides')
+];
+
+function collectMarkdownFiles(dirs) {
+  const files = [];
+  for (const dir of dirs) {
+    if (!fs.existsSync(dir)) continue;
+    for (const file of fs.readdirSync(dir)) {
+      if (file.endsWith('.md')) {
+        files.push(path.join(dir, file));
+      }
+    }
+  }
+  return files;
+}
+
+async function run() {
+  const files = collectMarkdownFiles(contentDirs);
+  const records = [];
+
+  for (const filePath of files) {
+    const raw = fs.readFileSync(filePath, 'utf-8');
+    const { data, content } = matter(raw);
+
+    const slug = data.slug || path.basename(filePath).replace(/\.md$/, '');
+    const title = data.title || 'Без названия';
+
+    records.push({
+      objectID: slug,
+      title,
+      content,
+      slug,
+      author: data.author || null,
+      tags: data.tags || [],
+      date: data.date || null
+    });
+  }
+
+  try {
+    await index.saveObjects(records);
+    console.log(`✅ Indexed ${records.length} records to Algolia`);
+  } catch (error) {
+    console.error('❌ Error indexing to Algolia:', error);
+  }
+}
+
+run();
+
+✅ Проверка
+После запуска:
+
+bash
+node scripts/index-to-algolia.js
+
+Записи появятся в панели Browse
+
+🔄 Автоматизация через Netlify
+Добавьте в netlify.toml:
+
+[build]
+command = "npm run build && node scripts/index-to-algolia.js"
+
